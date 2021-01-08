@@ -48,11 +48,15 @@ Após o projeto buildar, uma pasta com nome `dist` será criada. Adicione ela ao
 
 ### Autores
 ---
-
-<a href="https://github.com/suanev">
+<p align="center">
+<p>
+ <a href="https://github.com/suanev">
  <img src="https://avatars1.githubusercontent.com/u/49046892?s=460&u=c57857f9cf2449732b841a79744c227d53410297&v=4" width="100px;" alt="Suane V"/>
  <sub><b>Suane da Rosa Vallim</b></sub></a>🚀</a>
- 
+ </p>
+ <p>
  <a href="https://github.com/viniciusfaitao">
  <img src="https://avatars0.githubusercontent.com/u/57546535?s=460&u=83d9a30e66aa5416d1672d07aba670ab053e2e1d&v=4" width="100px;" alt="Vinicius F"/>
  <sub><b>Vinicius Faitão</b></sub></a>🚀</a>
+ </p>
+</p>
