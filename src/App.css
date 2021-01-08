@@ -1,0 +1,41 @@
+main {
+    width: 260px;
+    text-align: center;
+}
+
+input {
+    width: 220px;
+    height: 30px;
+    padding-left: 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.buttonContainer {
+    min-width: 150px;
+    padding: 10px;
+    background-color: #282c34;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+.buttonAdd {
+    width: 100%;
+    padding: 10px 10px;
+    margin-bottom: 10px;
+    border: 0;
+    cursor: pointer;
+    background-color: #ffd900;
+    color: #000;
+}
+
+.buttonToggle {
+    width: 100%;
+    padding: 5px 10px;
+    border: 0;
+    cursor: pointer;
+    background-color: #1a1d22;
+    color: #fff;
+}

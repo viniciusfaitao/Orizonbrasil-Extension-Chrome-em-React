@@ -1,0 +1,25 @@
+[debug] [2021-01-07T21:12:06.068Z] ----------------------------------------------------------------------
+[debug] [2021-01-07T21:12:06.070Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Vini\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2021-01-07T21:12:06.070Z] CLI Version:   8.4.3
+[debug] [2021-01-07T21:12:06.070Z] Platform:      win32
+[debug] [2021-01-07T21:12:06.070Z] Node Version:  v12.18.1
+[debug] [2021-01-07T21:12:06.072Z] Time:          Thu Jan 07 2021 18:12:06 GMT-0300 (GMT-03:00)
+[debug] [2021-01-07T21:12:06.072Z] ----------------------------------------------------------------------
+[debug] [2021-01-07T21:12:06.072Z] 
+[debug] [2021-01-07T21:12:06.079Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-01-07T21:12:06.080Z] > authorizing via signed-in user
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\Vini\Desktop\snow-extension-master
+
+Before we get started, keep in mind:
+
+  * You are initializing in an existing Firebase project directory
+
