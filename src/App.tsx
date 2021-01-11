@@ -1,16 +1,22 @@
 import * as React from "react";
+import { useEffect, useState } from "react";
+
 import firebase from "firebase";
+
 import db from "./utils/firebaseUtils";
 import { MessageTypes } from "./types";
+
 import "./App.css";
 
 const App = () => {
-  const [showIframe, setShowIframe] = React.useState(true);
-  const [uriMeet, setUriMeet] = React.useState("");
-  const [uriForms, setUriForms] = React.useState("");
-  let currentTab : any;
+  const [showIframe, setShowIframe] = useState(true);
+  const [uriMeet, setUriMeet] = useState("");
+  const [firstForm, setFirstForm] = useState("");
+  const [secondForm, setSecondForm] = useState("");
+  const [actualLink, setActualLink] = useState("");
+  let currentTab: any;
 
-  React.useEffect(() => {
+  useEffect(() => {
     chrome.runtime.sendMessage({ type: "REQ_IFRAME_STATUS" });
 
     chrome.runtime.onMessage.addListener((message: MessageTypes) => {
@@ -24,27 +30,29 @@ const App = () => {
     });
   }, []);
 
-  // Validação pra url correta
   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
     currentTab = tabs[0];
     if (currentTab.url.includes("https://meet.google.com/")) {
-      setUriMeet(currentTab.url);
-    }else {
-      setUriMeet("");
+      setActualLink(currentTab.url);
+    } else {
+      setActualLink("");
     }
   });
 
   const addForm = (event: any) => {
+    console.log("entrou");
     event.preventDefault();
 
     db.collection("Forms").add({
       uriMeet: uriMeet,
-      uriForms: uriForms,
+      uriFirstForm: firstForm,
+      uriSecondForm: secondForm,
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
     });
 
     setUriMeet("");
-    setUriForms("");
+    setFirstForm("");
+    setSecondForm("");
   };
 
   const toggleIframe = () => {
@@ -56,35 +64,66 @@ const App = () => {
 
   return (
     <main>
-      {uriMeet ? (
+      {actualLink ? (
         <div>
-          <h1>Orizonbrasil Forms</h1>
+          <img
+            src="https://www.orizonbrasil.com.br/assets/img/general/logob.png"
+            alt="Logo Orizon"
+          />
           <form>
-            <input
-              type="text"
-              placeholder="Insirá o link do GoogleMeet"
-              value={uriMeet}
-              onChange={(event) => setUriMeet(event.target.value)}
-            />
-            <input
-              type="text"
-              placeholder="Insirá o link do GoogleForms"
-              value={uriForms}
-              onChange={(event) => setUriForms(event.target.value)}
-            />
-
-            <div className="buttonContainer">
-              <button className="buttonAdd" disabled={!uriForms} type="submit" onClick={addForm}>
-                Adicionar
-              </button>
-              <button className="buttonToggle" onClick={toggleIframe}>
-                {showIframe ? "Desabilitar Iframe!" : "Ativar Iframe!"}
-              </button>
+            <div className="form-input">
+              <label>Link da meet atual</label>
+              <input
+                type="text"
+                placeholder="Insira o link da Google Meet"
+                defaultValue={uriMeet ? uriMeet : actualLink}
+                onChange={(event) => setUriMeet(event.target.value)}
+              />
             </div>
+            <div className="form-input">
+              <label>Link do formulário inicial</label>
+              <input
+                type="text"
+                placeholder="Insira o link do Google Forms"
+                value={firstForm}
+                onChange={(event) => setFirstForm(event.target.value)}
+              />
+            </div>
+            <div className="form-input">
+              <label>Link do formulário final</label>
+              <input
+                type="text"
+                placeholder="Insira o link do Google Forms"
+                value={secondForm}
+                onChange={(event) => setSecondForm(event.target.value)}
+              />
+            </div>
+            <button
+              className="btn-add"
+              disabled={!uriMeet || !firstForm || !secondForm}
+              type="submit"
+              onClick={addForm}
+            >
+              Adicionar
+            </button>
           </form>
+          <div className="btn-iframe">
+            <p>{showIframe ? "Iframe habilitado" : "Iframe desabilitado"}</p>
+            <div id="toggle">
+              <input
+                type="checkbox"
+                name="checkbox1"
+                id="checkbox1"
+                className="ios-toggle"
+                checked={showIframe}
+                onClick={toggleIframe}
+              />
+              <label htmlFor="checkbox1" className="checkbox-label"></label>
+            </div>
+          </div>
         </div>
       ) : (
-        <h1>Google Meet não encontrado!</h1>
+        <h1 className="">Google Meet não encontrado!</h1>
       )}
     </main>
   );
