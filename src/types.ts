@@ -21,4 +21,13 @@ interface IframeHook {
   getHook: any;
 }
 
-export type MessageTypes = IframeRequest | IframeResponse | IframeToggle | IframeHook | IframeHookRequest;
+interface NewTabRequest {
+  type: "REQ_NEWTAB_STATUS";
+}
+
+interface NewTabResponse {
+  type: "NEWTAB_STATUS";
+  url: string;
+}
+
+export type MessageTypes = IframeRequest | IframeResponse | IframeToggle | IframeHook | IframeHookRequest| NewTabRequest | NewTabResponse;

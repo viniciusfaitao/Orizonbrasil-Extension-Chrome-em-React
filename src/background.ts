@@ -2,11 +2,12 @@ import { MessageTypes } from "./types";
 import db from "./utils/firebaseUtils";
 
 let actualIframe: any;
+let bla: any;
 let showIframe = false;
 
 const sendIframeStatus = (showIframe: boolean) => {
   const message = { type: "IFRAME_STATUS", showIframe };
-  console.log("messageShow", message)
+  console.log("messageShow", message);
   chrome.runtime.sendMessage(message);
 
   chrome.tabs.query({}, (tabs) => {
@@ -20,19 +21,19 @@ const sendIframeStatus = (showIframe: boolean) => {
 
 const sendActualIframe = () => {
   db.collection("Forms")
-      .orderBy("timestamp", "desc")
-      .onSnapshot((snapshot) => {
-        const result = snapshot.docs.map((doc) => ({
-          id: doc.id,
-          uriMeet: doc.data().uriMeet,
-          uriForms: doc.data().uriForms,
-        }));
+    .orderBy("timestamp", "desc")
+    .onSnapshot((snapshot) => {
+      const result = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        uriMeet: doc.data().uriMeet,
+        uriForms: doc.data().uriForms,
+      }));
 
-        actualIframe = result;
-      });
+      actualIframe = result;
+    });
 
-  const response = { type: "HOOK_IFRAME", getHook: actualIframe }
-  console.log("responsePopUP", response)
+  const response = { type: "HOOK_IFRAME", getHook: actualIframe };
+  console.log("responsePopUP", response);
   chrome.runtime.sendMessage(response);
 
   chrome.tabs.query({}, (tabs) => {
@@ -44,7 +45,7 @@ const sendActualIframe = () => {
   });
 };
 
-if(!actualIframe){
+if (!actualIframe) {
   sendActualIframe();
 }
 chrome.storage.local.get("showIframe", (res) => {
@@ -74,7 +75,12 @@ chrome.runtime.onMessage.addListener((message: MessageTypes) => {
       chrome.storage.local.set({ actualIframe: actualIframe });
       sendActualIframe();
       break;
-
+    case "NEWTAB_STATUS":
+      bla = message.url;
+      console.log("URL NO BACKGROUND", bla);
+      chrome.storage.local.set({ bla: bla });
+      sendActualIframe();
+      break;
     default:
       break;
   }
