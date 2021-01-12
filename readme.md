@@ -1,13 +1,13 @@
 <h1 align="center"> POC Orizon - Extensão Google Chrome </h1>
-> Necessidade: <br>
-> - Utilizando uma extensão do Chrome, abra um iframe com um formulário para questionar sobre a meeting em uma call do Google Meet.
-> - Esta extensão consegue sobrepor uma tela do Google Meet?
+Necessidade: <br>
+- Utilizando uma extensão do Chrome, abra um iframe com um formulário para questionar sobre a meeting em uma call do Google Meet.<br>
+- Esta extensão consegue sobrepor uma tela do Google Meet?
 
 
 ## Proposta
 Utilizando ReactJS e Vanilla JS, criamos uma extensão para o Chrome. Esta extensão terá utilidade para o administrador, que ao logar, poderá registrar um formulário para a meeting específica que será salva ao Cloud Firestone do Firebase e também excluir. Para o usuário, ele poderá desabilitar o iframe da tela. <br><br>
 <p align="center">
-<img src="https://i.imgur.com/APoiB6S.png" alt="Pop up"/>
+<img src="https://i.imgur.com/HatC7S4.png" alt="Pop up"/>
 </p>
 <br><br>
 Também irá criar um popup que somente quando o usuário estiver em um site do Google Meet irá ter em frente a tela um Iframe com um forms para questionar os usuários que estão nesta meeting.
